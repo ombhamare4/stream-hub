@@ -11,7 +11,7 @@ export const Toggle = () => {
   const label = collapsed ? "Expand" : "Collapse";
 
   return (
-    <div className="mb-4">
+    <div className="">
       {!collapsed ? (
         <div className="p-3 flex items-center justify-between w-full">
           <p className="font-semibold text-primary">For you</p>

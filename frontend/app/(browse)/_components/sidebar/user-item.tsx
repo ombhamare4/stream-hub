@@ -52,7 +52,6 @@ export const UserItem = ({
                 {username}
               </p>
               {isLive && <LiveBadge className="w-8" />}
-              {/* <div className="text-xs text-muted-foreground">28.7k</div> */}
             </div>
           )}
         </div>

@@ -13,14 +13,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model User{
-   id String @id @default(auto()) @map("_id") @db.ObjectId
-   username String @unique
-   imageUrl String @db.String
-   externalUserId  String @unique
-   bio String? @db.String
-   createdAt DateTime @default(now())
-   updatedAt DateTime @updatedAt
+model User {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  username       String   @unique
+  imageUrl       String   @db.String
+  externalUserId String   @unique
+  bio            String?  @db.String
+  followings     Follow[] @relation(name: "Following")
+  followedBy     Follow[] @relation(name: "FollowedBy")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
+model Follow {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  followerId  String
+  followingId String
+  follower    User     @relation(name: "Following", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User     @relation(name: "FollowedBy", fields: [followingId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+}

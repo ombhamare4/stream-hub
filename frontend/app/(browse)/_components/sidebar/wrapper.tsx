@@ -4,6 +4,7 @@ import { useSidebar } from "@/store/use-sidebar";
 import { useState, useEffect } from "react";
 import { ToggleSkelton } from "./toggle";
 import { RecommendedSkeleton } from "./recommended";
+import { FollowingSkeleton } from "./following";
 interface WrapperProps {
   children: React.ReactNode; // With this we can inject server component as well
 }
@@ -24,6 +25,7 @@ export const Wrapper = ({ children }: WrapperProps) => {
         )}
       >
         <ToggleSkelton />
+        <FollowingSkeleton/>
         <RecommendedSkeleton/>
       </aside>
     );

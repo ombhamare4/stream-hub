@@ -55,6 +55,13 @@ export const getRecommended = async () => {
               },
             },
           },
+          {
+            blockings:{
+              none:{
+                blockedId:userId
+              }
+            }
+          }
         ],
       },
       orderBy: {

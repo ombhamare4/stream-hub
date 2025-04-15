@@ -1,7 +1,7 @@
 const CreatorPage = () => {
   return (
     <>
-      <div className="p-3">
+      <div>
         <h1 className="text-4xl  font-bold ">Welcome, Creator</h1>
       </div>
     </>

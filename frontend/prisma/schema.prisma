@@ -5,12 +5,14 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider     = "mongodb"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
@@ -23,6 +25,7 @@ model User {
   followedBy     Follow[] @relation(name: "FollowedBy")
   blockings      Block[]  @relation(name: "Blocking")
   blockedBy      Block[]  @relation(name: "BlockedBy")
+  stream         Stream?  @relation(name: "Stream")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
@@ -53,4 +56,26 @@ model Block {
   @@unique([blockerId, blockedId])
   @@index([blockerId])
   @@index([blockedId])
+}
+
+model Stream {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  name         String  @db.String
+  thumbnailUrl String? @db.String
+
+  ingressId    String? @unique
+  serverUrl    String? @db.String
+  streamKey    String? @db.String
+
+  isLive              Boolean @default(false)
+  isChatEnabled       Boolean @default(true)
+  isChatDelayed       Boolean @default(false)
+  isChatFollowersOnly Boolean @default(false)
+
+  userId    String    @unique @db.ObjectId
+  user      User     @relation(name: "Stream", fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@fulltext([name])
 }

@@ -1,3 +1,4 @@
+import { WebsiteLogo } from "@/components/logo";
 import { Logo } from "./_components/logo";
 
 export default function AuthLayout({
@@ -6,11 +7,8 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="h-full flex flex-col justify-center items-center gap-5">
-      {/* <nav className="p-1 bg-red-500  w-full">
-        <h1>Auht Navbar</h1>
-      </nav> */}
-      <Logo/>
+    <div className="flex flex-col justify-center items-center h-screen gap-5 px-4">
+      <WebsiteLogo height={128} width={128} />
       {children}
     </div>
   );

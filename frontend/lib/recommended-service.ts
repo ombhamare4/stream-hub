@@ -16,7 +16,6 @@ export const getRecommended = async () => {
   let users = [];
 
   if (userId) {
-    console.log(userId);
     // users = await db.user.findMany({
     //   where: {
     //     AND: [
@@ -45,23 +44,23 @@ export const getRecommended = async () => {
         AND: [
           {
             id: {
-              not: userId,
+              not: userId, // Exclude self
             },
           },
           {
             followedBy: {
               none: {
-                followerId: userId,
+                followingId: userId, // Exclude users already followed by current user
               },
             },
           },
           {
-            blockings:{
-              none:{
-                blockedId:userId
-              }
-            }
-          }
+            blockedBy: {
+              none: {
+                blockerId: userId, // Exclude users the current user has blocked
+              },
+            },
+          },
         ],
       },
       orderBy: {
@@ -76,5 +75,6 @@ export const getRecommended = async () => {
     });
   }
 
+  console.log("User Recommendation: ", users);
   return users;
 };

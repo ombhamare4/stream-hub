@@ -1,4 +1,4 @@
-5:42:00
+6:25:53
 
 If prisma model modify
  run npx prisma generate
@@ -6,7 +6,9 @@ If prisma model modify
 
 
 ngrok
-ngrok http --url=<Your Url> 3000
+    ngrok http --url=<Your Url> 3000
 
-tijipa2433@exclussi.com
-tijipa2433@exclussi
+Sample Account
+    tamijor
+    tamijor131@anlocc.com
+    tamijor131@anlocc

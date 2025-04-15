@@ -41,7 +41,7 @@ export const Search = () => {
         onChange={(e) => setSearchQuery(e.target.value)}
         type="text"
         placeholder="Search Stream"
-        className="focus-visible:ring-0 border-none shadow-sm rounded-r-none focus-visible:ring-transparent focus-visible:ring-offset-0"
+        className="focus-visible:ring-1 border-1 shadow-sm rounded-r-none focus-visible:ring-white focus-visible:ring-offset-0"
       />
       {searchQuery && (
         <X
@@ -51,9 +51,9 @@ export const Search = () => {
       )}
       <Button
         type="submit"
-        className="cursor-pointer rounded-l-none "
-        size="sm"
-        variant="secondary"
+        size="icon"
+        variant="outline"
+        className="rounded-r-md px-4 py-2     rounded-l-none"
       >
         <SearchIcon className="h-5 w-5 text-white" />
       </Button>

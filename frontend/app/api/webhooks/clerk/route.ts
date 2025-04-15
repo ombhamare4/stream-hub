@@ -51,6 +51,8 @@ export async function POST(req: Request) {
   // Do something with payload
   // For this guide, log payload to console
   const eventType = evt.type;
+  // console.log("👺👺👺👺👺👺",eventType)
+  // console.log("🚅🚅🚅🚅🚅 Payload: ",payload.data)
 
   if (eventType === "user.created") {
     await db.user.create({
@@ -58,7 +60,14 @@ export async function POST(req: Request) {
         externalUserId: payload.data.id,
         username: payload.data.username,
         imageUrl: payload.data.image_url,
+        stream:{
+          create:{
+            name:`${payload.data.username}'s stream`
+          }
+        }
       },
+    }).then(()=>{}).catch((e)=>{
+      console.log("🌋🌋🌋🌋🌋🌋Error: ",e)
     });
   }
 
@@ -80,7 +89,7 @@ export async function POST(req: Request) {
       data: {
         username: payload.data.username,
         imageUrl: payload.data.image_url,
-        bio: payload.data.bio,
+        bio: payload.data.bio
       },
     });
   }

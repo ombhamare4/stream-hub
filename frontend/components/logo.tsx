@@ -12,9 +12,15 @@ interface WebsiteLogoProps {
   width: number;
   height: number;
   showTitle?: boolean;
+  subtitle?: string;
 }
 
-export const WebsiteLogo = ({ width, height, showTitle }: WebsiteLogoProps) => {
+export const WebsiteLogo = ({
+  width,
+  height,
+  showTitle,
+  subtitle,
+}: WebsiteLogoProps) => {
   return (
     <Link href="/">
       <div
@@ -30,10 +36,12 @@ export const WebsiteLogo = ({ width, height, showTitle }: WebsiteLogoProps) => {
         </div>
         {showTitle && (
           <div className={cn("hidden lg:flex flex-col ", font.className)}>
-            <p className="text-2xl font-semibold">StreamHub</p>
-            <p className="text-xs font-semibold text-left text-gray-300">
-              Let's Create
-            </p>
+            <p className="text-2xl font-bold">Stream<span className="text-black">Hub</span></p>
+            {subtitle && (
+              <p className="text-xs font-semibold text-left text-gray-300">
+                {subtitle}
+              </p>
+            )}
           </div>
         )}
       </div>

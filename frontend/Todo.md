@@ -1,4 +1,4 @@
-6:25:53
+06:03
 
 If prisma model modify
  run npx prisma generate

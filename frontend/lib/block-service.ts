@@ -45,7 +45,6 @@ export const isBlockedByUser = async (userId: string) => {
         },
       },
     });
-    console.log("👺👺👺👺",existingblocking)
 
     return !!existingblocking;
   } catch (e) {
